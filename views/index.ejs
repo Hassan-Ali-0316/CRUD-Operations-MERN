@@ -9,11 +9,14 @@
 </head>
 <body>
   <div>
+    <div class="nav">
+      <a href="/read">Read Users</a>
+    </div>
     <h1>Create User</h1>
-    <form action="">
-        <input type="text" placeholder="name">
-        <input type="text" placeholder="email">
-        <input type="text" placeholder="imageurl">
+    <form action="/create" method="post">
+        <input type="text" name="name" placeholder="name">
+        <input type="text" name="email" placeholder="email">
+        <input type="text" name="image" placeholder="imageurl">
         <input type="submit" placeholder="Create User">
 
     </form>

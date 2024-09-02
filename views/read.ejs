@@ -9,14 +9,27 @@
 </head>
 <body>
   <div>
+    <a href="/">Back to home</a>
     <h1>All Users</h1>
     <div class="users">
-        <div>
-            <div></div>
-            <h3>Hassan Ali Khan</h3>
-            <h5>ha159193@gmail.com start form 13:01 video</h5>
-            
-        </div>
+      <% if(users.length > 0){ %>
+        <% users.forEach(function(e) { %> 
+          <div>
+            <div>
+              <img src="<%= e.image %>" alt=""> 
+            </div>
+            <h3><%= e.name %></h3>
+            <h5><%= e.email %></h5> 
+            <div class="flex gap-3">
+              <a href="">Edit User</a>
+              <a href="/delete/<%= e._id %>">Delete User</a>
+            </div> 
+          </div>
+        <% }) %>
+      <% } else{ %>
+          <h3>No users found! Try contacting management at ha159193@gmail.com</h3>
+      <% } %>
+      
     </div>
   </div>
 </body>
