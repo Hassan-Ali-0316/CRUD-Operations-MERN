@@ -1,35 +1,47 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>All Users</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div>
-    <a href="/">Back to home</a>
-    <h1>All Users</h1>
-    <div class="users">
-      <% if(users.length > 0){ %>
-        <% users.forEach(function(e) { %> 
-          <div>
-            <div>
-              <img src="<%= e.image %>" alt=""> 
+<body class="bg-gray-950 text-white font-sans">
+  <div class="min-h-screen flex flex-col items-center justify-center px-4">
+    
+    <!-- Navigation -->
+    <nav class="w-full max-w-4xl mb-8">
+      <div class="flex justify-between items-center bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h1 class="text-4xl font-bold text-cyan-400">User Management</h1>
+        <a href="/" class="text-cyan-400 hover:text-cyan-300 transition duration-200 font-medium">Back to Home</a>
+      </div>
+    </nav>
+    
+    <!-- Users List -->
+    <div class="w-full max-w-4xl bg-gray-800 p-8 rounded-lg shadow-2xl">
+      <h2 class="text-3xl font-semibold mb-6 text-center text-cyan-400">All Users</h2>
+      <div class="users grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <% if(us.length > 0) { %>
+          <% us.forEach(function(e) { %> 
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg text-center">
+              <div class="mb-4">
+                <img src="<%= e.image %>" alt="User Image" class="w-32 h-32 rounded-full mx-auto shadow-md object-cover" onerror="this.src='/images/placeholder.png'">
+              </div>
+              <h3 class="text-xl font-bold text-cyan-400"><%= e.name %></h3>
+              <p class="text-gray-300 mb-4"><%= e.email %></p>
+              <div class="flex justify-center gap-4">
+                <a href="/update/<%= e._id %>" class="bg-cyan-500 text-gray-900 py-2 px-4 rounded-lg hover:bg-cyan-600 transition duration-300 shadow-md">Edit</a>
+                <a href="/delete/<%= e._id %>" class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300 shadow-md">Delete</a>
+              </div>
             </div>
-            <h3><%= e.name %></h3>
-            <h5><%= e.email %></h5> 
-            <div class="flex gap-3">
-              <a href="">Edit User</a>
-              <a href="/delete/<%= e._id %>">Delete User</a>
-            </div> 
+          <% }) %>
+        <% } else { %>
+          <div class="col-span-full text-center">
+            <h3 class="text-xl text-gray-300">No users found! Try contacting management at <a href="mailto:ha159193@gmail.com" class="text-cyan-400 hover:underline">ha159193@gmail.com</a></h3>
           </div>
-        <% }) %>
-      <% } else{ %>
-          <h3>No users found! Try contacting management at ha159193@gmail.com</h3>
-      <% } %>
-      
+        <% } %>
+      </div>
     </div>
   </div>
 </body>
